@@ -33,6 +33,10 @@ function App() {
 
     autoTable(doc , ({
       margin: { top: 10 },
+      columnStyles : {
+        0 : {cellWidth : "auto"},
+        1 : {cellWidth : 50}
+      }, 
       body: [
         ['Aakash' , {
           rowSpan: 5,
@@ -43,15 +47,19 @@ function App() {
         ['Aakash'],
         ['Aakash'],
         ['Aakash'],
+        [{
+          colSpan: 2,
+          content: `Aakash ${256}`
+        }],
       ],
       theme: 'grid',
       didDrawCell: (data) => {
-        if(data.column.index === 1  && data.cell.section === 'body'){
+        if(data.column.index === 1  && data.cell.raw && data.cell.section === 'body'){
           console.log(data.cell)
           let img = "http://101.53.133.164:1338/images/Diva_Invizio/shop/1/2.jpg"
           let dimW = data.cell.width;
           let dimH = data.cell.height;
-          doc.addImage(img, data.cell.x + 0.2, data.cell.y, dimW - 0.2 ,dimH)
+          doc.addImage(img, data.cell.x, data.cell.y, dimW ,dimH)
         }
       }
     }))
