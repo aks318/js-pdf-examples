@@ -36,8 +36,8 @@ function App() {
       body: [
         ['Aakash' , {
           rowSpan: 5,
-          content: doc.addImage("http://101.53.133.164:1338/images/Diva_Invizio/shop/1/2.jpg" , "jpg" , 10 ,10),
-          styles: { valign: 'middle', halign: 'center' },
+          content: "",
+          styles: { valign: 'middle', halign: 'center'}, 
         }],
         ['Aakash'],
         ['Aakash'],
@@ -45,6 +45,15 @@ function App() {
         ['Aakash'],
       ],
       theme: 'grid',
+      didDrawCell: (data) => {
+        if(data.column.index === 1  && data.cell.section === 'body'){
+          console.log(data.cell)
+          let img = "http://101.53.133.164:1338/images/Diva_Invizio/shop/1/2.jpg"
+          let dimW = data.cell.width;
+          let dimH = data.cell.height;
+          doc.addImage(img, data.cell.x + 0.2, data.cell.y, dimW - 0.2 ,dimH)
+        }
+      }
     }))
 
 doc.save('table.pdf')
