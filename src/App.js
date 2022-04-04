@@ -1,6 +1,7 @@
 import './App.css';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import TemplateOne from './Templates/TemplateOne';
 
 function App() {
   const pdfPrint = () => {
@@ -30,11 +31,28 @@ function App() {
       ],
     }))
 
+    autoTable(doc , ({
+      margin: { top: 10 },
+      body: [
+        ['Aakash' , {
+          rowSpan: 5,
+          content: doc.addImage("http://101.53.133.164:1338/images/Diva_Invizio/shop/1/2.jpg" , "jpg" , 10 ,10),
+          styles: { valign: 'middle', halign: 'center' },
+        }],
+        ['Aakash'],
+        ['Aakash'],
+        ['Aakash'],
+        ['Aakash'],
+      ],
+      theme: 'grid',
+    }))
+
 doc.save('table.pdf')
   }
   return (
     <div className="App">
       <button onClick={pdfPrint}>Print</button>
+      <TemplateOne />
     </div>
   );
 }
