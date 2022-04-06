@@ -2,6 +2,7 @@ import './App.css';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import TemplateOne from './Templates/TemplateOne';
+import Catalogue from './Templates/Catalogue';
 
 function App() {
   const pdfPrint = () => {
@@ -70,6 +71,7 @@ doc.save('table.pdf')
     <div className="App">
       <button onClick={pdfPrint}>Print</button>
       <TemplateOne />
+      <Catalogue />
     </div>
   );
 }
